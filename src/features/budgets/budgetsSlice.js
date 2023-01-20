@@ -12,7 +12,7 @@ Full store's state object example is in Store.js file notes
 
 import { createSlice } from '@reduxjs/toolkit';
  
-export const CATEGORIES = ['housing', 'food', 'transportation', 'utilities', 'clothing', 'healthcare', 'personal', 'education', 'entertainment'];
+export const CATEGORIES = ['housing', 'food', 'entertainment'];
 const initialState = CATEGORIES.map(category => ({ category: category, amount: 0 }))
  
 //With Toolkit
