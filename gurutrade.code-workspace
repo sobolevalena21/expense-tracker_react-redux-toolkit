@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../2-React/expense-tracker_react-redux-toolkit"
+		}
+	]
+}

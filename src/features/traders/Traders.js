@@ -1,35 +1,16 @@
 /*
-  The Transactions component should render a Link for each transaction value in the transactions slice of state.
+import the traders selector defined in your tradersSlice and use it to access all the traders in state, and replace the empty object currently assigned to traders with the traders in state.
+
+Next, you’ll need to hook the new trader form up to the action creators your slice generates. >> In src/components/NewTraderForm.js, import addTrader and dispatch it from the event handler that runs when the new trader form is submitted.
 */
 
 
+import NewTraderForm from "../../components/NewTraderForm";
 import { Link } from "react-router-dom";
 import ROUTES from "../../app/routes";
 import { useSelector } from 'react-redux';
-import {selectTransactions } from './transactionsSlice.js';
+import { selectTraders } from './tradersSlice.js';
 
-
-export default function Transactions() {
-  const transactions = useSelector(selectTransactions); // replace this with a call to your selector to get all the transactions in state
-  return (
-    <section className="center">
-      <h1>Transactions</h1>
-      <ul className="transactions-list">
-        {Object.values(transactions).map((transaction) => (
-          <Link key={transaction.id} to={ROUTES.transactionRoute(transaction.id)}>
-            <li className="transaction">{transaction.name}</li>
-          </Link>
-        ))}
-      </ul>
-      <Link to={ROUTES.newTransactionRoute()} className="button">
-        Create New Transaction
-      </Link>
-    </section>
-  );
-}
-
-
-/*
 export default function Traders() {
   const traders = useSelector(selectTraders); // call to your selector to select all the traders in state
 
@@ -60,7 +41,3 @@ export default function Traders() {
     </section>
   );
 }
-
-
-
-*/
