@@ -1,9 +1,119 @@
-/*
-import the thunk action creator from your transaction slice and dispatch it from the handleSubmit() event handler that fires when the new transaction form is submitted. Remember, that action creator expects to receive a payload of the form { id: '123', name: 'transaction name', traderId: '456', cardIds: ['1', '2', '3', ...]}. You’ll have to generate an id by calling uuidv4. For now, pass the empty cardIds array variable for the cardIds property (you’ll change that in a later task).
-
-
+/* Based on Exp Tracker Project
+>> Renaming done!
+>> Add Routing functionality:
+    * history.push(ROUTES.transactionsRoute());
+    * ???
 */
 
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  addTransaction,
+  TRADERS,
+  ACTIONS,
+  STOCKS
+} from '../features/transactions/transactionsSlice';
+import { v4 as uuidv4 } from 'uuid';
+import currentDate from '../data/date.js';
+
+export default function NewTransactionForm({ traders }) {
+  const dispatch = useDispatch();
+  const [traderId, setTraderId] = useState(TRADERS[0]); //dropdown list
+  const [action, setAction] = useState(ACTIONS[0]);//dropdown list
+  const [amount, setAmount] = useState(0);
+  const [stock, setStock] = useState(STOCKS[0]);//hardcode stocks A, B, C >> where? >> TransactionSlice, like TRADERS
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      addTransaction({
+        traderId: traderId,
+        action: action,
+        amount: parseFloat(amount),
+        stock: stock,
+        id: uuidv4(),
+        date: currentDate
+      })
+    );
+    setTraderId(TRADERS[0]);
+    setAction(ACTIONS[0]);
+    setAmount(0);
+    setStock(STOCKS[0]);
+  };
+
+  return (
+    <section className="new-transaction-section">
+      <h2>New Transaction</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-wrapper">
+          <div>
+            <label htmlFor="category">Trader</label>
+            <select
+              id="traderId"
+              value={traderId}
+              onChange={(e) => setTraderId(e.currentTarget.value)}
+            >
+              {TRADERS.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="category">Action</label>
+            <select
+              id="action"
+              value={action}
+              onChange={(e) => setAction(e.currentTarget.value)}
+            >
+              {ACTIONS.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="amount">Amount</label>
+            <input
+              id="amount"
+              value={amount}
+              onChange={(e) => setAmount(e.currentTarget.value)}
+              type="number"
+              step="0.01"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="category">Stock</label>
+            <select
+              id="stock"
+              value={stock}
+              onChange={(e) => setStock(e.currentTarget.value)}
+            >
+              {STOCKS.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+
+        </div>
+
+
+        <button>Add Transaction</button>
+      </form>
+    </section>
+  );
+}
+
+
+/*
+import the thunk action creator from your transaction slice and dispatch it from the handleSubmit() event handler that fires when the new transaction form is submitted. Remember, that action creator expects to receive a payload of the form { id: '123', name: 'transaction name', traderId: '456', cardIds: ['1', '2', '3', ...]}. You’ll have to generate an id by calling uuidv4. For now, pass the empty cardIds array variable for the cardIds property (you’ll change that in a later task).
 
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -49,19 +159,6 @@ export default function NewTransactionForm() {
       cardIds: cardIds
     }));
 
-    /*
-    >> In theory, could we omit this complicated thunk and just dispatch the two actions right in the handleSubmit in the NewTransactionForm ??? After testing it, YES, it seems that we CAN, but then transactionId in the addTransactionIdToTrader will need a seperate (repetitive) arrangement (2nd dispatch cannot access id parameter in the 1st dispatch). 
-        dispatch(addTransaction({
-          id: uuidv4(),
-          name: name,
-          traderId: traderId,
-          cardIds: cardIds
-        }));
-        dispatch(addTransactionIdToTrader({
-          traderId: traderId,
-          transactionId: transaction.id //error: transaction is not defined
-          }))
-      */
     history.push(ROUTES.transactionsRoute());
   };
 
@@ -139,3 +236,4 @@ export default function NewTransactionForm() {
     </section>
   );
 }
+*/

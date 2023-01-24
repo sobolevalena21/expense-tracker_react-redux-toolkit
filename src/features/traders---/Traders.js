@@ -2,7 +2,7 @@
 import the traders selector defined in your tradersSlice and use it to access all the traders in state, and replace the empty object currently assigned to traders with the traders in state.
 
 Next, you’ll need to hook the new trader form up to the action creators your slice generates. >> In src/components/NewTraderForm.js, import addTrader and dispatch it from the event handler that runs when the new trader form is submitted.
-*/
+
 
 
 import NewTraderForm from "../../components/NewTraderForm";
@@ -41,3 +41,4 @@ export default function Traders() {
     </section>
   );
 }
+*/

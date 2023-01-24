@@ -1,3 +1,60 @@
+/* Based on Exp Tracker Project
+    >> renaming done!
+    >> Routing???
+*/
+import Transactions from '../features/transactions/Transactions';
+import Budgets from '../features/budgets/Budgets';
+import React from 'react';
+import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+  useRouteMatch,
+} from 'react-router-dom';
+import ROUTES from "./routes";
+
+function App() {
+  return (
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to={ROUTES.budgetsRoute()} activeClassName="active">
+              Budgets
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={ROUTES.transactionsRoute()} activeClassName="active">
+              Transactions
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={ROUTES.portfoliosRoute()} activeClassName="active">
+              Portfolios
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+
+      <Switch>
+        <Route path="/budgets">
+          <Budgets />
+        </Route>
+        <Route path="/transactions">
+          <Transactions />
+        </Route>
+      </Switch>
+    </Router>
+  );
+}
+
+
+export default App;
+
+
+/* 
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -13,6 +70,7 @@ import Trader from "../features/traders/Trader";
 import Transaction from "../features/transactions/Transaction";
 import Transactions from "../features/transactions/Transactions";
 import ROUTES from "./routes";
+import './App.css';
 
 export default function App() {
   return (
@@ -88,3 +146,5 @@ function TransactionRoutes() {
     </>
   );
 }
+
+*/

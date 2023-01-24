@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tradersReducer from "../features/traders/tradersSlice";
 import transactionsReducer from "../features/transactions/transactionsSlice";
-import cardsReducer from "../features/cards/cardsSlice.js";
+import budgetsReducer from "../features/budgets/budgetsSlice";
+//import cardsReducer from "../features/cards/cardsSlice.js";
+//import tradersReducer from "../features/traders/tradersSlice";
+
 
 export default configureStore({
   reducer: {
-    traders: tradersReducer,
+    //traders: tradersReducer,
+    //cards: cardsReducer,
     transactions: transactionsReducer,
-    cards: cardsReducer,
+    budgets: budgetsReducer
   },
 });

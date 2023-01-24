@@ -13,7 +13,7 @@ state for traders:
     }
 }
 
-*/
+
 
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -48,3 +48,5 @@ export const { addTrader, addTransactionIdToTrader } = tradersSlice.actions;
 
 
 export default tradersSlice.reducer;
+
+*/
